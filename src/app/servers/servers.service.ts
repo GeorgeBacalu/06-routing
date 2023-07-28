@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Server } from './server/server.model';
 
 @Injectable({ providedIn: 'root' })
 export class ServersService {
-  private servers: { id: number, name: string, status: string }[] = [
+  private servers: Server[] = [
     { id: 1, name: "Productionserver", status: "online" },
     { id: 2, name: "Testserver", status: "offline" },
     { id: 3, name: "Devserver", status: "offline" },
   ];
 
-  getServers(): { id: number, name: string, status: string }[] {
-    return this.servers;
-  }
+  getServers(): Server[] { return this.servers; }
 
-  getServer(id: number): { id: number, name: string, status: string } {
-    return this.servers.find(server => server.id === id);
-  }
+  getServer(id: number): Server { return this.servers.find(server => server.id === id); }
 
   updateServer(id: number, serverInfo: { name: string, status: string}): void {
     const serverToUpdate = this.servers.find(server => server.id === id);
